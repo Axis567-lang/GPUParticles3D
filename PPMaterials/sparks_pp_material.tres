@@ -1,0 +1,51 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=9 format=3 uid="uid://80ot7uusxtw5"]
+
+[sub_resource type="Gradient" id="Gradient_5gnnl"]
+offsets = PackedFloat32Array(0.19403, 0.597015)
+colors = PackedColorArray(1, 0.464667, 0.27, 1, 0.685, 0.1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_86yx1"]
+gradient = SubResource("Gradient_5gnnl")
+
+[sub_resource type="Curve" id="Curve_oacsw"]
+max_value = 100.0
+_data = [Vector2(0, 100), 0.0, 0.0, 0, 0, Vector2(1, 0), -220.722, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cfcpk"]
+curve = SubResource("Curve_oacsw")
+
+[sub_resource type="Curve" id="Curve_gao2g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ms80n"]
+curve = SubResource("Curve_gao2g")
+
+[sub_resource type="Curve" id="Curve_b6pb6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.99998, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 10), 0.0, 0.0, 0, 0, Vector2(1, 5), 0.0, 0.0, 0, 0, Vector2(1, 20), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_re5n2"]
+curve = SubResource("Curve_b6pb6")
+
+[resource]
+lifetime_randomness = 1.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 8.0
+emission_ring_inner_radius = 8.0
+gravity = Vector3(0, 2, 0)
+linear_accel_min = 10.0
+linear_accel_max = 18.0
+scale_curve = SubResource("CurveTexture_ms80n")
+color_ramp = SubResource("GradientTexture1D_86yx1")
+emission_curve = SubResource("CurveTexture_cfcpk")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, 1, 0)
+turbulence_influence_min = 0.084
+turbulence_influence_max = 0.265
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+turbulence_influence_over_life = SubResource("CurveTexture_re5n2")

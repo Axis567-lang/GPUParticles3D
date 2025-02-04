@@ -1,0 +1,6 @@
+# Godot .gitignore
+.import/
+.export/
+*.godot
+*.cfg
+*.log

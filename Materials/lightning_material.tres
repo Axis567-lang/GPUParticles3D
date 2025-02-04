@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://drniu5njsb5c4"]
+
+[ext_resource type="Shader" uid="uid://bakc8muu5hxsb" path="res://Shaders/mark_shader.tres" id="1_lng5b"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_lng5b")
+shader_parameter/mark_color = Color(0.5, 1, 3, 1)

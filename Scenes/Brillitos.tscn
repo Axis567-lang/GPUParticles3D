@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://blwn7a3ehx601"]
+
+[ext_resource type="Environment" uid="uid://csmi1aq30npft" path="res://Environment/BrillitosEnv.tres" id="1_gjr28"]
+[ext_resource type="Material" uid="uid://80ot7uusxtw5" path="res://PPMaterials/sparks_pp_material.tres" id="2_cuqmf"]
+[ext_resource type="QuadMesh" uid="uid://bhnv3wc405ndk" path="res://Meshes/sparkles_quad_mesh.tres" id="3_a5paa"]
+
+[node name="Brillitos" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_gjr28")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2262, 3.22718, 1.03184)
+amount = 20000
+lifetime = 3.0
+fixed_fps = 144
+process_material = ExtResource("2_cuqmf")
+draw_pass_1 = ExtResource("3_a5paa")
