@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://civknq6y6r8g4"
+path="res://.godot/imported/post_process_sampler_2d.glsl-dacc1c1314df55788c3a9e403ae2e4f2.res"
+
+[deps]
+
+source_file="res://glsl/post_process_sampler_2d.glsl"
+dest_files=["res://.godot/imported/post_process_sampler_2d.glsl-dacc1c1314df55788c3a9e403ae2e4f2.res"]
+
+[params]
+

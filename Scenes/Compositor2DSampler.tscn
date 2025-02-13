@@ -1,0 +1,177 @@
+[gd_scene load_steps=31 format=3 uid="uid://dxet7y2g7b5fu"]
+
+[ext_resource type="Script" path="res://Compute Shaders/post_process_sampler_2d.gd" id="1_pylhj"]
+[ext_resource type="Shader" path="res://Shaders/chromatic_aberration.gdshader" id="2_1h15j"]
+[ext_resource type="Shader" path="res://Shaders/transparent_ripple.gdshader" id="3_u5v4u"]
+[ext_resource type="Shader" path="res://Shaders/toon_water.gdshader" id="4_j5cee"]
+[ext_resource type="Texture2D" uid="uid://3j1ori0jd6ol" path="res://Textures/wave_noise.png" id="5_0ha0c"]
+[ext_resource type="Texture2D" uid="uid://cy3cxn4nqr4ja" path="res://Textures/waves.jpg" id="6_5ab8e"]
+[ext_resource type="Shader" path="res://Shaders/colored_glass.gdshader" id="7_g441g"]
+[ext_resource type="Shader" path="res://Shaders/stylized_metal.gdshader" id="8_585y5"]
+[ext_resource type="Texture2D" uid="uid://cpa26j7eb825s" path="res://Textures/black_foil_tex.jpg" id="9_5ye4d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vmfid"]
+
+[sub_resource type="Sky" id="Sky_vlxrt"]
+sky_material = SubResource("ProceduralSkyMaterial_vmfid")
+
+[sub_resource type="Environment" id="Environment_fbwm7"]
+background_mode = 2
+sky = SubResource("Sky_vlxrt")
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_dxxja"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 1
+access_resolved_color = false
+access_resolved_depth = false
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_pylhj")
+
+[sub_resource type="Compositor" id="Compositor_orgkw"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_dxxja")])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0r6g"]
+render_priority = 0
+shader = ExtResource("2_1h15j")
+shader_parameter/sphere_color = Color(0, 0, 0, 0)
+shader_parameter/wave_amplitude = 0.006
+shader_parameter/wave_frequency = 19.397
+shader_parameter/wave_speed = 3.618
+shader_parameter/chroma_amount = 1.0
+shader_parameter/stars_enabled = true
+shader_parameter/star_field_scale = 4.377
+shader_parameter/star_size = 0.008
+shader_parameter/star_intensity = 1.0
+shader_parameter/star_axis_speed = 0.051
+shader_parameter/star_move_mode = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_7iee1"]
+material = SubResource("ShaderMaterial_q0r6g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_41civ"]
+render_priority = 0
+shader = ExtResource("3_u5v4u")
+shader_parameter/frequency = 4.0
+shader_parameter/amplitude = 2.0
+shader_parameter/ripple_rate = 5.0
+shader_parameter/blending = 1.0
+shader_parameter/wave_amplitude = 0.05
+shader_parameter/wave_frequency = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2gdgb"]
+material = SubResource("ShaderMaterial_41civ")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtmjy"]
+render_priority = 0
+shader = ExtResource("4_j5cee")
+shader_parameter/time_speed = 1.0
+shader_parameter/surface_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 2.0
+shader_parameter/vertical_frequency = 2.0
+shader_parameter/size = 3.0
+shader_parameter/banding_bias = 0.6
+shader_parameter/wave_height = 0.5
+shader_parameter/texture_height = 0.5
+shader_parameter/color1 = Color(0.59, 0.761, 1, 1)
+shader_parameter/color2 = Color(0.274, 0.474, 0.98, 1)
+shader_parameter/color3 = Color(0.059, 0.389, 0.85, 1)
+shader_parameter/color4 = Color(0, 0.267, 1, 1)
+shader_parameter/wave_texture = ExtResource("6_5ab8e")
+shader_parameter/noise_texture = ExtResource("5_0ha0c")
+
+[sub_resource type="SphereMesh" id="SphereMesh_prukp"]
+material = SubResource("ShaderMaterial_jtmjy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpj4m"]
+render_priority = 0
+shader = ExtResource("7_g441g")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/roughness = 0.15
+shader_parameter/refraction = 0.5
+shader_parameter/refraction_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/normal_strength = 0.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+shader_parameter/surface_contribution = 0.2
+shader_parameter/specular_contribution = 0.2
+shader_parameter/refraction_contribution = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_frq6b"]
+material = SubResource("ShaderMaterial_lpj4m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbiyq"]
+albedo_color = Color(0.85, 0.17, 0.328667, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7jg28"]
+material = SubResource("StandardMaterial3D_cbiyq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um6ah"]
+albedo_color = Color(1.92523e-07, 0.505318, 0.789455, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sj4v4"]
+material = SubResource("StandardMaterial3D_um6ah")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xluth"]
+render_priority = 0
+shader = ExtResource("8_585y5")
+shader_parameter/baseColor = Color(1, 1, 1, 1)
+shader_parameter/gradientBasis = Vector3(3, 3, 3)
+shader_parameter/gradientBasisDistort = Vector3(0, 0, 0)
+shader_parameter/gradientBasisSpeed = 0.0
+shader_parameter/refractionSplit = 2.0
+shader_parameter/refractionSplitPower = 1.0
+shader_parameter/refractionAffect = 0.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_qlq3u"]
+material = SubResource("ShaderMaterial_xluth")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upjit"]
+albedo_texture = ExtResource("9_5ye4d")
+
+[sub_resource type="BoxMesh" id="BoxMesh_183ns"]
+material = SubResource("StandardMaterial3D_upjit")
+
+[node name="Compositor" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fbwm7")
+compositor = SubResource("Compositor_orgkw")
+
+[node name="ChromaticAberration" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55852, 0, 0)
+mesh = SubResource("SphereMesh_7iee1")
+
+[node name="TransparentRipple" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.74358, 0, 0)
+mesh = SubResource("SphereMesh_2gdgb")
+
+[node name="ToonWater" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.840406, 0, 0)
+mesh = SubResource("SphereMesh_prukp")
+
+[node name="ColoredGlass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.36323, 0, 0)
+mesh = SubResource("SphereMesh_frq6b")
+
+[node name="NormalPink" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51489, -0.894684, 3.49165)
+mesh = SubResource("SphereMesh_7jg28")
+
+[node name="NormalBlue" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.84295, -0.894684, 3.49165)
+mesh = SubResource("SphereMesh_sj4v4")
+
+[node name="StylizedMetal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.894684, 3.49775)
+mesh = SubResource("SphereMesh_qlq3u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10.3262, 0, 0, 0, 0.242246, -1.93076, 0, 0.0329123, 14.2111, 0, -1.31829, 0)
+mesh = SubResource("BoxMesh_183ns")

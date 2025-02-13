@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://drniu5njsb5c4"]
 
-[ext_resource type="Shader" uid="uid://bakc8muu5hxsb" path="res://Shaders/mark_shader.tres" id="1_lng5b"]
+[ext_resource type="Shader" uid="uid://bakc8muu5hxsb" path="res://Visual Shaders/mark_shader.tres" id="1_lng5b"]
 
 [resource]
 render_priority = 0

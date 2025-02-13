@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cdvwieiof43w5"]
 
-[ext_resource type="Shader" uid="uid://st1p2na1fab7" path="res://Shaders/fire_shader.tres" id="1_p7lyc"]
+[ext_resource type="Shader" uid="uid://st1p2na1fab7" path="res://Visual Shaders/fire_shader.tres" id="1_p7lyc"]
 [ext_resource type="Texture2D" uid="uid://cs5sp37jm8p5e" path="res://Textures/fire_texture.jpg" id="2_g32sa"]
 [ext_resource type="Texture2D" uid="uid://dsbjpuaie1qxd" path="res://Textures/fire_noise_texture3.jpg" id="3_y77pg"]
 

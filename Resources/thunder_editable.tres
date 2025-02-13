@@ -1,16 +1,16 @@
 [gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://epakud8mhd11"]
 
 [ext_resource type="Material" uid="uid://drniu5njsb5c4" path="res://Materials/lightning_material.tres" id="1_5u6nn"]
-[ext_resource type="Shader" uid="uid://c82aesn8d4mkb" path="res://Shaders/thunder_shader.tres" id="1_xmk4v"]
-[ext_resource type="Shader" uid="uid://j75h0cfo4apo" path="res://Shaders/wave_shader.tres" id="3_6nuho"]
+[ext_resource type="Shader" uid="uid://c82aesn8d4mkb" path="res://Visual Shaders/thunder_shader.tres" id="2_mdohh"]
+[ext_resource type="Shader" uid="uid://j75h0cfo4apo" path="res://Visual Shaders/wave_shader.tres" id="3_w0wg8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q0sqb"]
 render_priority = 0
-shader = ExtResource("1_xmk4v")
+shader = ExtResource("2_mdohh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bqsuj"]
 render_priority = 0
-shader = ExtResource("3_6nuho")
+shader = ExtResource("3_w0wg8")
 shader_parameter/wave_color = Color(0.5, 1, 5, 1)
 
 [resource]
