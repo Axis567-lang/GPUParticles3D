@@ -18,7 +18,7 @@ sky_material = SubResource("ProceduralSkyMaterial_vmfid")
 background_mode = 2
 sky = SubResource("Sky_vlxrt")
 
-[sub_resource type="CompositorEffect" id="CompositorEffect_k01j1"]
+[sub_resource type="CompositorEffect" id="CompositorEffect_1ssim"]
 resource_local_to_scene = false
 resource_name = ""
 enabled = true
@@ -28,7 +28,7 @@ needs_normal_roughness = false
 script = ExtResource("1_yw1aa")
 
 [sub_resource type="Compositor" id="Compositor_vegst"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_k01j1")])
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_1ssim")])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q0r6g"]
 render_priority = 0

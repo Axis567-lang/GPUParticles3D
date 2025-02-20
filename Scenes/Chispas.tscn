@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dupsycrhxtxte"]
+[gd_scene load_steps=13 format=3 uid="uid://dupsycrhxtxte"]
 
 [sub_resource type="Sky" id="Sky_ah2tj"]
 
@@ -11,24 +11,42 @@ glow_strength = 0.5
 glow_bloom = 0.24
 glow_blend_mode = 1
 
-[sub_resource type="Curve" id="Curve_rq8gn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+[sub_resource type="Gradient" id="Gradient_ueynn"]
+colors = PackedColorArray(0.869548, 0.265606, 0, 1, 1, 0.9, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7r2uv"]
+gradient = SubResource("Gradient_ueynn")
+
+[sub_resource type="Curve" id="Curve_njfay"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_arjnt"]
+curve = SubResource("Curve_njfay")
+
+[sub_resource type="Curve" id="Curve_1nfs3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.504098, 0.296703), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
-metadata/_snap_enabled = true
 
-[sub_resource type="CurveTexture" id="CurveTexture_feqef"]
-curve = SubResource("Curve_rq8gn")
+[sub_resource type="CurveTexture" id="CurveTexture_mdusu"]
+curve = SubResource("Curve_1nfs3")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lyqea"]
-particle_flag_align_y = true
-emission_shape = 1
-emission_sphere_radius = 1.0
-radial_velocity_min = -2.23517e-05
-radial_velocity_max = 9.99998
-scale_curve = SubResource("CurveTexture_feqef")
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ksx18"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+scale_curve = SubResource("CurveTexture_mdusu")
+color_ramp = SubResource("GradientTexture1D_7r2uv")
+emission_curve = SubResource("CurveTexture_arjnt")
+collision_mode = 1
+collision_friction = 0.13
+collision_bounce = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wcs2p"]
-transparency = 1
+[sub_resource type="Curve" id="Curve_ph2nu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_btwxp"]
 shading_mode = 0
 vertex_color_use_as_albedo = true
 billboard_mode = 3
@@ -36,25 +54,28 @@ billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+grow_amount = 4.87
+use_particle_trails = true
 
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_qndf7"]
-material = SubResource("StandardMaterial3D_wcs2p")
-shape = 0
-size = 0.1
-sections = 80
-section_length = 0.01
-section_segments = 128
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_t8b1l"]
+material = SubResource("StandardMaterial3D_btwxp")
+size = 0.03
+curve = SubResource("Curve_ph2nu")
 
 [node name="Chispas" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8l5lw")
 
-[node name="GPUParticlesExplosionSparkles" type="GPUParticles3D" parent="."]
-emitting = false
-lifetime = 2.0
-trail_enabled = true
-process_material = SubResource("ParticleProcessMaterial_lyqea")
-draw_pass_1 = SubResource("RibbonTrailMesh_qndf7")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Trail" type="GPUParticles3D" parent="."]
+emitting = false
+lifetime = 10.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_ksx18")
+draw_pass_1 = SubResource("RibbonTrailMesh_t8b1l")
+
+[node name="Floor" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.927284, -0.0272217)
+size = Vector3(20, 0.6, 20)

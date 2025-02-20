@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://btejgwnlk3y6o"]
 
-[ext_resource type="Script" path="res://Compute Shaders/post_process.gd" id="1_baalf"]
+[ext_resource type="Script" path="res://Compute Shaders/outline_ce.gd" id="1_lnqmd"]
 [ext_resource type="Shader" path="res://Shaders/chromatic_aberration.gdshader" id="1_xiavn"]
 [ext_resource type="Shader" path="res://Shaders/transparent_ripple.gdshader" id="2_8jmyn"]
 [ext_resource type="Shader" path="res://Shaders/toon_water.gdshader" id="3_x07gk"]
@@ -18,19 +18,17 @@ sky_material = SubResource("ProceduralSkyMaterial_vmfid")
 background_mode = 2
 sky = SubResource("Sky_vlxrt")
 
-[sub_resource type="CompositorEffect" id="CompositorEffect_k01j1"]
+[sub_resource type="CompositorEffect" id="CompositorEffect_firgf"]
 resource_local_to_scene = false
 resource_name = ""
 enabled = true
-effect_callback_type = 0
-access_resolved_color = false
-access_resolved_depth = false
+effect_callback_type = 4
 needs_motion_vectors = false
 needs_normal_roughness = false
-script = ExtResource("1_baalf")
+script = ExtResource("1_lnqmd")
 
 [sub_resource type="Compositor" id="Compositor_vegst"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_k01j1")])
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_firgf")])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q0r6g"]
 render_priority = 0

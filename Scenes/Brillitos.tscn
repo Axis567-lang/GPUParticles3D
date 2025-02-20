@@ -11,6 +11,7 @@ environment = ExtResource("1_gjr28")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2262, 3.22718, 1.03184)
+emitting = false
 amount = 20000
 lifetime = 3.0
 fixed_fps = 144

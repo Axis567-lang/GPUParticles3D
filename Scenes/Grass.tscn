@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqqrol5pff53y"]
+
+[ext_resource type="Shader" uid="uid://byyarbftpxkp1" path="res://Shaders/foliage_shader_G4alpha10.tres" id="1_ksw5m"]
+[ext_resource type="Shader" path="res://Shaders/terrain_shader.gdshader" id="2_o670a"]
+[ext_resource type="Texture2D" uid="uid://dh355tj62gykj" path="res://Textures/heightmap.png" id="2_wipve"]
+[ext_resource type="ArrayMesh" uid="uid://ckvutff8t27yh" path="res://Meshes/grass2.obj" id="4_k24uq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xk6p7"]
+sky_top_color = Color(0.0609846, 0.490447, 0.644073, 1)
+sky_horizon_color = Color(0.491319, 0.671783, 0.867318, 1)
+ground_bottom_color = Color(0.136955, 0.0848194, 0.013718, 1)
+ground_horizon_color = Color(0.490196, 0.670588, 0.866667, 1)
+
+[sub_resource type="Sky" id="Sky_ppfk7"]
+sky_material = SubResource("ProceduralSkyMaterial_xk6p7")
+
+[sub_resource type="Environment" id="Environment_ksbv4"]
+background_mode = 2
+sky = SubResource("Sky_ppfk7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_molqk"]
+render_priority = 0
+shader = ExtResource("2_o670a")
+shader_parameter/height_scale = 2.0
+shader_parameter/heightmap = ExtResource("2_wipve")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0uyx0"]
+material = SubResource("ShaderMaterial_molqk")
+size = Vector2(10, 10)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ak5o"]
+shader = ExtResource("1_ksw5m")
+shader_parameter/instance_rows = 100.0
+shader_parameter/instance_rot_randomize = 2.5
+shader_parameter/instance_spacing = 1.0
+shader_parameter/instance_scale_x = 1.0
+shader_parameter/instance_scale_y = 1.0
+shader_parameter/instance_scale_z = 1.0
+shader_parameter/instance_scale_randomize = 1.0
+shader_parameter/instance_pos_randomize = 2.0
+shader_parameter/instance_scale_min = 0.2
+shader_parameter/instance_scale_max = 1.2
+shader_parameter/_coverage_altitude = 10.0
+shader_parameter/_coverage_range = 100.0
+shader_parameter/_slope_coverage = 0.5
+shader_parameter/clumping_strength = 20.0
+shader_parameter/terrain_normal_basis = null
+shader_parameter/instance_orient_to_normal = false
+shader_parameter/instance_orientation_influence = 1.0
+shader_parameter/__terrain_amplitude = -0.07
+shader_parameter/map_heightmap_size = Vector2(1865, 910)
+shader_parameter/map_normalmap_size = Vector2(2000, 2000)
+shader_parameter/map_heightmap = ExtResource("2_wipve")
+
+[node name="Grass" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ksbv4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.40119, 0, 0, 0, 1, 0, 0, 0, 2.40119, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_0uyx0")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 10000
+process_material = SubResource("ShaderMaterial_5ak5o")
+draw_pass_1 = ExtResource("4_k24uq")
