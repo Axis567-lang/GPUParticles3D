@@ -81,4 +81,3 @@ void fragment() {
 	ALBEDO = color;
 
 }
-
