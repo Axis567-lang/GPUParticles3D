@@ -92,7 +92,7 @@ void start() {
     float time = TIME * wind_frequency;
     vec3 wind_movement = wind_direction * vec3(sin(time + pos.x), 0.0, sin(time + pos.z)) * wind_strength;
     pos += wind_movement;
-	
+
 	// hide parts from steep areas
 	if (abs(y2 - pos.y) > _slope_coverage) {
 		pos.y = -10000.0;
@@ -134,9 +134,9 @@ void start() {
 	*/
 
 	vec3 base_scale = vec3(
-		mix(instance_scale_min, instance_scale_max, noise.x) * instance_scale_x, 
-		mix(instance_scale_min, instance_scale_max, noise.y) * instance_scale_y, 
-		mix(instance_scale_min, instance_scale_max, noise.z) * instance_scale_z 
+		mix(instance_scale_min, instance_scale_max, noise.x) * instance_scale_x,
+		mix(instance_scale_min, instance_scale_max, noise.y) * instance_scale_y,
+		mix(instance_scale_min, instance_scale_max, noise.z) * instance_scale_z
 	);
 	base_scale *= base_scale * instance_scale_randomize;
 	base_scale = sign(base_scale) * max(abs(base_scale), 0.1);
